@@ -134,9 +134,33 @@
         }
 
         .profile-image {
-            width: 100%;
+            width: 200px; /* Smaller profile picture */
+            height: 200px;
             border-radius: 50%;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            object-fit: cover;
+        }
+
+        .specialization-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .specialization-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .specialization-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         /* Skills Section */
@@ -156,6 +180,9 @@
         .skill-category h3 {
             color: var(--primary-color);
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .skill-list {
@@ -165,56 +192,38 @@
         .skill-list li {
             padding: 0.5rem 0;
             border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        /* Projects Section */
-        .projects-grid {
+        .skill-list li i {
+            color: var(--secondary-color);
+            width: 20px;
+        }
+
+        /* Work Section */
+        .work-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
 
-        .project-card {
+        .work-card {
             background: white;
+            padding: 2rem;
             border-radius: 10px;
-            overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
         }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1rem 0;
-        }
-
-        .tag {
-            background: var(--accent-color);
+        .work-card h3 {
             color: var(--primary-color);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
+            margin-bottom: 1rem;
         }
 
         /* Interactive Map */
         #portfolioMap {
-            height: 400px;
+            height: 500px;
             border-radius: 10px;
             margin-top: 2rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -230,7 +239,7 @@
         .contact-info {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.5rem;
         }
 
         .contact-item {
@@ -240,14 +249,34 @@
         }
 
         .contact-icon {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             background: var(--primary-color);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
         }
 
         /* Footer */
@@ -262,7 +291,7 @@
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 1.5rem;
             margin-bottom: 1rem;
         }
 
@@ -287,12 +316,15 @@
             }
 
             .about-content,
-            .contact-content {
+            .contact-content,
+            .specialization-grid {
                 grid-template-columns: 1fr;
             }
 
-            .projects-grid {
-                grid-template-columns: 1fr;
+            .profile-image {
+                width: 150px;
+                height: 150px;
+                justify-self: center;
             }
         }
     </style>
@@ -305,7 +337,7 @@
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
+                <li><a href="#work">Work</a></li>
                 <li><a href="#research">Research</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -316,43 +348,59 @@
     <section class="hero">
         <div class="hero-content">
             <h1>David - Geospatial Scientist</h1>
-            <p>MA in Geoinformatics | Remote Sensing Expert | Landscape Ecology Specialist</p>
-            <p class="hero-subtitle">Transforming spatial data into meaningful ecological insights</p>
-            <a href="#projects" class="cta-button">Explore My Work</a>
+            <p>MA in Geoinformatics | GIS Expert | Landscape Ecologist</p>
+            <p class="hero-subtitle">Transforming spatial data into actionable insights for environmental solutions</p>
+            <a href="#contact" class="cta-button">Get In Touch</a>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about">
-        <h2 class="section-title">About Me</h2>
+        <h2 class="section-title">Professional Profile</h2>
         <div class="about-content">
-            <div>
+            <div style="text-align: center;">
                 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
                      alt="David - GIS Specialist" class="profile-image">
             </div>
             <div>
-                <h3>Geospatial Scientist & Landscape Ecologist</h3>
+                <h3>Geospatial Scientist & Analyst</h3>
                 <p>
-                    I hold a Master of Arts in Geoinformatics with a specialization in landscape ecology and remote sensing. 
-                    My passion lies at the intersection of geospatial technology and environmental science, where I leverage 
-                    cutting-edge tools like Google Earth Engine to solve complex ecological challenges.
+                    I am a dedicated GIS professional with a Master's degree in Geoinformatics, combining technical expertise 
+                    in spatial analysis with a deep understanding of environmental systems. My work focuses on leveraging 
+                    geospatial technologies to address complex ecological and urban challenges.
                 </p>
-                <p>
-                    With expertise in spatial pattern analysis, multi-temporal remote sensing, and ecological modeling, 
-                    I bridge the gap between technical geospatial analysis and practical environmental applications.
-                </p>
-                <div class="stats">
+                
+                <div class="specialization-grid">
+                    <div class="specialization-card">
+                        <h3><i class="fas fa-map-marked-alt"></i> GIS Specialization</h3>
+                        <p>
+                            Expert in spatial data analysis, cartography, and geodatabase management. 
+                            Proficient in QGIS, ArcGIS, and open-source geospatial tools for comprehensive 
+                            spatial problem-solving and decision support.
+                        </p>
+                    </div>
+                    <div class="specialization-card">
+                        <h3><i class="fas fa-mountain"></i> Landscape Ecology</h3>
+                        <p>
+                            Specialized in analyzing spatial patterns and ecological processes across landscapes. 
+                            Expertise in habitat connectivity, biodiversity assessment, and ecosystem service mapping 
+                            using advanced remote sensing and spatial statistics.
+                        </p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center;">
                     <div class="stat-item">
-                        <h4>50+</h4>
-                        <p>Geospatial Projects</p>
+                        <h4>MA</h4>
+                        <p>Geoinformatics</p>
                     </div>
                     <div class="stat-item">
                         <h4>5+</h4>
                         <p>Years Experience</p>
                     </div>
                     <div class="stat-item">
-                        <h4>MA</h4>
-                        <p>Geoinformatics</p>
+                        <h4>50+</h4>
+                        <p>Projects Completed</p>
                     </div>
                 </div>
             </div>
@@ -364,103 +412,77 @@
         <h2 class="section-title">Technical Expertise</h2>
         <div class="skills-grid">
             <div class="skill-category">
-                <h3><i class="fas fa-satellite"></i> Remote Sensing</h3>
+                <h3><i class="fas fa-satellite-dish"></i> Remote Sensing</h3>
                 <ul class="skill-list">
-                    <li>Google Earth Engine</li>
-                    <li>Landsat & Sentinel Data Analysis</li>
-                    <li>Image Classification</li>
-                    <li>Time Series Analysis</li>
-                    <li>Radar Data Processing</li>
-                    <li>Change Detection</li>
+                    <li><i class="fas fa-check"></i> Google Earth Engine</li>
+                    <li><i class="fas fa-check"></i> Landsat & Sentinel Analysis</li>
+                    <li><i class="fas fa-check"></i> Image Classification</li>
+                    <li><i class="fas fa-check"></i> Time Series Analysis</li>
+                    <li><i class="fas fa-check"></i> Change Detection</li>
+                    <li><i class="fas fa-check"></i> Radar Processing</li>
                 </ul>
             </div>
             <div class="skill-category">
                 <h3><i class="fas fa-map"></i> GIS & Spatial Analysis</h3>
                 <ul class="skill-list">
-                    <li>QGIS & ArcGIS Pro</li>
-                    <li>Spatial Statistics</li>
-                    <li>PostGIS & Spatial Databases</li>
-                    <li>Web Mapping (Leaflet, Mapbox)</li>
-                    <li>Geoprocessing & Automation</li>
-                    <li>3D Visualization</li>
+                    <li><i class="fas fa-check"></i> QGIS & ArcGIS Pro</li>
+                    <li><i class="fas fa-check"></i> Spatial Statistics</li>
+                    <li><i class="fas fa-check"></i> PostGIS & Geodatabases</li>
+                    <li><i class="fas fa-check"></i> Web Mapping</li>
+                    <li><i class="fas fa-check"></i> Geoprocessing</li>
+                    <li><i class="fas fa-check"></i> Cartography</li>
                 </ul>
             </div>
             <div class="skill-category">
                 <h3><i class="fas fa-code"></i> Programming</h3>
                 <ul class="skill-list">
-                    <li>Python (GeoPandas, Rasterio)</li>
-                    <li>R for Spatial Analysis</li>
-                    <li>JavaScript (GEE Apps)</li>
-                    <li>SQL & Database Management</li>
-                    <li>Git & Version Control</li>
+                    <li><i class="fas fa-check"></i> Python (GeoPandas, Rasterio)</li>
+                    <li><i class="fas fa-check"></i> R for Spatial Analysis</li>
+                    <li><i class="fas fa-check"></i> JavaScript (GEE Apps)</li>
+                    <li><i class="fas fa-check"></i> SQL & Database Management</li>
+                    <li><i class="fas fa-check"></i> Git & Version Control</li>
                 </ul>
             </div>
             <div class="skill-category">
                 <h3><i class="fas fa-leaf"></i> Ecology & Research</h3>
                 <ul class="skill-list">
-                    <li>Landscape Ecology</li>
-                    <li>Habitat Modeling</li>
-                    <li>Species Distribution Models</li>
-                    <li>Environmental Monitoring</li>
-                    <li>Academic Research</li>
-                    <li>Scientific Writing</li>
+                    <li><i class="fas fa-check"></i> Landscape Metrics</li>
+                    <li><i class="fas fa-check"></i> Habitat Modeling</li>
+                    <li><i class="fas fa-check"></i> Species Distribution</li>
+                    <li><i class="fas fa-check"></i> Environmental Monitoring</li>
+                    <li><i class="fas fa-check"></i> Academic Research</li>
+                    <li><i class="fas fa-check"></i> Scientific Writing</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                     alt="Landscape Fragmentation Analysis" class="project-image">
-                <div class="project-content">
-                    <h3>Landscape Fragmentation Analysis</h3>
-                    <p>Comprehensive analysis of landscape patterns using Google Earth Engine and FRAGSTATS metrics across European forests.</p>
-                    <div class="project-tags">
-                        <span class="tag">GEE</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">Landscape Ecology</span>
-                    </div>
-                    <a href="#" class="cta-button">View Project</a>
-                </div>
+    <!-- Work Section -->
+    <section id="work">
+        <h2 class="section-title">Professional Work</h2>
+        <div class="work-grid">
+            <div class="work-card">
+                <h3><i class="fas fa-analytics"></i> Spatial Analysis</h3>
+                <p>Advanced spatial modeling and analysis for environmental and urban planning applications. Expertise in multi-criteria evaluation, suitability analysis, and spatial optimization.</p>
             </div>
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                     alt="Urban Heat Island Mapping" class="project-image">
-                <div class="project-content">
-                    <h3>Urban Heat Island Mapping</h3>
-                    <p>Multi-temporal analysis of urban heat islands using Landsat thermal data and machine learning classification.</p>
-                    <div class="project-tags">
-                        <span class="tag">Remote Sensing</span>
-                        <span class="tag">Machine Learning</span>
-                        <span class="tag">Landsat</span>
-                    </div>
-                    <a href="#" class="cta-button">View Project</a>
-                </div>
+            <div class="work-card">
+                <h3><i class="fas fa-database"></i> Data Management</h3>
+                <p>Design and implementation of spatial databases, ETL processes, and data quality assurance for large-scale geospatial projects.</p>
             </div>
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                     alt="Wetland Monitoring System" class="project-image">
-                <div class="project-content">
-                    <h3>Wetland Monitoring System</h3>
-                    <p>Real-time wetland monitoring using Sentinel-1 radar data and custom classification algorithms in Google Earth Engine.</p>
-                    <div class="project-tags">
-                        <span class="tag">Sentinel-1</span>
-                        <span class="tag">GEE</span>
-                        <span class="tag">JavaScript</span>
-                    </div>
-                    <a href="#" class="cta-button">View Project</a>
-                </div>
+            <div class="work-card">
+                <h3><i class="fas fa-chart-line"></i> Research & Development</h3>
+                <p>Academic research in landscape ecology, methodological development for spatial analysis, and innovation in remote sensing applications.</p>
+            </div>
+            <div class="work-card">
+                <h3><i class="fas fa-globe"></i> Environmental Mapping</h3>
+                <p>Comprehensive environmental mapping services including land cover classification, change detection, and ecosystem service assessment.</p>
             </div>
         </div>
     </section>
 
     <!-- Interactive Map Section -->
     <section id="research">
-        <h2 class="section-title">Research & Project Locations</h2>
+        <h2 class="section-title">Project Locations in Israel</h2>
         <div id="portfolioMap"></div>
     </section>
 
@@ -484,22 +506,32 @@
                     </div>
                     <div>
                         <h4>Location</h4>
-                        <p>Based in Europe | Available Worldwide</p>
+                        <p>Israel | Available for projects worldwide</p>
                     </div>
                 </div>
                 <div class="contact-item">
                     <div class="contact-icon">
-                        <i class="fas fa-file-pdf"></i>
+                        <i class="fas fa-phone"></i>
                     </div>
                     <div>
-                        <h4>Resume</h4>
-                        <p><a href="#" style="color: var(--primary-color);">Download PDF</a></p>
+                        <h4>Phone</h4>
+                        <p>+972 123 456 789</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <div>
+                        <h4>Availability</h4>
+                        <p>Open for consulting projects and collaborations</p>
                     </div>
                 </div>
             </div>
             <form class="contact-form">
                 <input type="text" placeholder="Your Name" required>
                 <input type="email" placeholder="Your Email" required>
+                <input type="text" placeholder="Subject">
                 <textarea placeholder="Your Message" rows="5" required></textarea>
                 <button type="submit" class="cta-button">Send Message</button>
             </form>
@@ -511,7 +543,7 @@
         <div class="social-links">
             <a href="#"><i class="fab fa-github"></i></a>
             <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-researchgate"></i></a>
             <a href="#"><i class="fab fa-google-scholar"></i></a>
         </div>
         <p>&copy; 2024 David - GIS & Remote Sensing Specialist. All rights reserved.</p>
@@ -520,45 +552,100 @@
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Initialize Map
-        const map = L.map('portfolioMap').setView([48.8566, 2.3522], 3);
+        // Initialize Map centered on Israel
+        const map = L.map('portfolioMap').setView([31.5, 34.75], 8);
 
         // Add base layer
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        // Sample project locations
+        // Project locations in Israel
         const projects = [
             {
-                lat: 48.8566,
-                lng: 2.3522,
-                title: "Paris Urban Ecology",
-                description: "Urban heat island analysis"
+                lat: 31.7683,
+                lng: 35.2137,
+                title: "Jerusalem Urban Ecology",
+                description: "Urban green space analysis and thermal comfort mapping",
+                type: "urban"
             },
             {
-                lat: 52.5200,
-                lng: 13.4050,
-                title: "Berlin Landscape Study",
-                description: "Landscape fragmentation research"
+                lat: 32.0853,
+                lng: 34.7818,
+                title: "Tel Aviv Coastal Monitoring",
+                description: "Shoreline change detection and coastal ecosystem assessment",
+                type: "coastal"
             },
             {
-                lat: 45.4642,
-                lng: 9.1900,
-                title: "Alpine Ecology",
-                description: "Mountain vegetation monitoring"
+                lat: 31.2529,
+                lng: 34.7915,
+                title: "Negev Desert Research",
+                description: "Arid landscape dynamics and vegetation monitoring",
+                type: "desert"
+            },
+            {
+                lat: 32.7940,
+                lng: 35.5310,
+                title: "Galilee Biodiversity",
+                description: "Habitat connectivity and species distribution modeling",
+                type: "mountain"
+            },
+            {
+                lat: 31.6688,
+                lng: 34.5743,
+                title: "Southern Agriculture",
+                description: "Precision agriculture and land use optimization",
+                type: "agriculture"
+            },
+            {
+                lat: 33.0081,
+                lng: 35.5980,
+                title: "Northern Water Resources",
+                description: "Watershed management and hydrological modeling",
+                type: "water"
             }
         ];
 
-        // Add markers for projects
+        // Custom icons for different project types
+        const iconColors = {
+            urban: 'blue',
+            coastal: 'cyan',
+            desert: 'orange',
+            mountain: 'green',
+            agriculture: 'yellow',
+            water: 'purple'
+        };
+
+        // Create custom icons
+        function createCustomIcon(color) {
+            return L.divIcon({
+                className: 'custom-div-icon',
+                html: `<div style="background-color: ${color}; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"></div>`,
+                iconSize: [20, 20],
+                iconAnchor: [10, 10]
+            });
+        }
+
+        // Add markers for projects with custom icons
         projects.forEach(project => {
-            L.marker([project.lat, project.lng])
-                .addTo(map)
-                .bindPopup(`
-                    <strong>${project.title}</strong><br>
-                    ${project.description}
-                `);
+            L.marker([project.lat, project.lng], {
+                icon: createCustomIcon(iconColors[project.type])
+            })
+            .addTo(map)
+            .bindPopup(`
+                <div style="min-width: 200px;">
+                    <h4 style="margin: 0 0 10px 0; color: var(--primary-color);">${project.title}</h4>
+                    <p style="margin: 0 0 10px 0; font-size: 14px;">${project.description}</p>
+                    <div style="display: flex; align-items: center; gap: 5px; font-size: 12px; color: #666;">
+                        <div style="width: 12px; height: 12px; background-color: ${iconColors[project.type]}; border-radius: 50%;"></div>
+                        ${project.type.charAt(0).toUpperCase() + project.type.slice(1)}
+                    </div>
+                </div>
+            `);
         });
+
+        // Add a scale control
+        L.control.scale().addTo(map);
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -578,6 +665,13 @@
             } else {
                 header.style.background = 'linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%)';
             }
+        });
+
+        // Simple form submission handler
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
         });
     </script>
 </body>
